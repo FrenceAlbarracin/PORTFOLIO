@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0b0c" />
+  <meta name="description" content="Personal portfolio of an AI filmmaker and video editor specializing in cinematic storytelling, commercial films, and short-form content." />
+  <meta property="og:title" content="Video Editor & AI Filmmaker — Portfolio" />
+  <meta property="og:description" content="Stories made to be felt. Cinematic edits, AI filmmaking and visual storytelling." />
+  <title>YOUR NAME — AI Filmmaker & Video Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span class="brand-word" data-site-name>YOUR NAME</span><span class="brand-period">.</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#work" class="nav-link">Selected work</a>
+        <a href="#services" class="nav-link">Expertise</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link nav-contact">Let's talk <span aria-hidden="true">↗</span></a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero-shell" id="home" aria-labelledby="heroTitle">
+      <div class="hero-ambient" aria-hidden="true"></div>
+      <div class="container hero">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> <span data-hero-kicker>AI FILMMAKER / VIDEO EDITOR / PHILIPPINES</span></p>
+          <h1 class="hero-headline" id="heroTitle"><span>NOT JUST</span><span class="accent-line">AN EDIT.</span><span class="outline-line">AN EXPERIENCE<span class="dot">.</span></span></h1>
+          <p class="hero-lede">I combine cinematic storytelling, AI-generated visuals and precise editing to create videos that don't just look good — they <em>make you feel something.</em></p>
+          <div class="hero-buttons">
+            <a class="button button-primary magnetic" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+            <button class="button button-text" type="button" id="showreelTrigger"><span class="play-ring" aria-hidden="true">▶</span> Watch showreel</button>
+          </div>
+          <div class="hero-microcopy"><span>AVAILABLE FOR CREATIVE COLLABORATIONS</span><span class="micro-rule"></span><span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span></div>
+        </div>
+        <div class="hero-visual" id="heroVisual" aria-label="Portrait of the video editor in an editing studio">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="portrait-frame">
+            <img src="assets/hero-portrait.webp" alt="Portrait of the filmmaker in a black shirt, standing with folded arms inside a professional video-editing studio" fetchpriority="high" />
+            <div class="portrait-vignette" aria-hidden="true"></div>
+            <div class="frame-reticle frame-reticle-top" aria-hidden="true"></div><div class="frame-reticle frame-reticle-bottom" aria-hidden="true"></div>
+          </div>
+          <div class="floating-caption"><span class="caption-square" aria-hidden="true"></span><span>FRAME 001 <small> / </small> NEW PERSPECTIVE</span></div>
+          <div class="hero-role-tag" aria-hidden="true">HUMAN INSTINCT.<br />AI POSSIBILITIES.</div>
+          <div class="hero-timecode" aria-hidden="true"><span class="rec-dot"></span> REC <span id="heroTimecode">00:00:01:08</span></div>
+          <div class="hero-timeline" aria-hidden="true"><span></span><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+      </div>
+      <div class="hero-bottom-shade" aria-hidden="true"></div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track"><span>AI FILMMAKING</span><i>✳</i><span>CINEMATIC EDITING</span><i>✳</i><span>CREATIVE DIRECTION</span><i>✳</i><span>BRAND FILMS</span><i>✳</i><span>VISUAL STORYTELLING</span><i>✳</i><span>AI FILMMAKING</span><i>✳</i><span>CINEMATIC EDITING</span><i>✳</i><span>CREATIVE DIRECTION</span><i>✳</i><span>BRAND FILMS</span><i>✳</i><span>VISUAL STORYTELLING</span><i>✳</i></div>
+    </div>
+
+    <section class="section work-section" id="work" aria-labelledby="workTitle">
+      <div class="container">
+        <div class="section-kicker reveal"><span>01 / THE WORK</span><span>FRAMES WORTH REMEMBERING</span></div>
+        <div class="section-head reveal">
+          <div><h2 class="display-title" id="workTitle">SELECTED <span class="text-outline">WORK.</span></h2><p class="section-lede">Different formats. One obsession: making every second count.</p></div>
+          <p class="section-side-note">A space for cinematic stories, commercial cuts, AI visuals, and the moments in between.</p>
+        </div>
+        <div class="work-toolbar reveal"><div class="filters" id="projectFilters" role="group" aria-label="Filter projects"><button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">All work <span>02</span></button><button type="button" class="filter-chip" data-filter="ai" aria-pressed="false">AI films</button><button type="button" class="filter-chip" data-filter="commercial" aria-pressed="false">Commercials</button></div><span class="work-counter" id="projectCount" aria-live="polite">SHOWING 02 PROJECTS</span></div>
+        <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="statement-section" aria-label="Creative statement">
+      <div class="statement-text" aria-hidden="true">THE CUT CHANGES EVERYTHING <span>✳</span> THE CUT CHANGES EVERYTHING <span>✳</span></div>
+      <div class="container statement-content reveal"><p>TOOLS ARE EVOLVING. <strong>TASTE IS EVERYTHING.</strong></p><span>CREATIVE HUMAN DIRECTION × GENERATIVE POSSIBILITY</span></div>
+    </section>
+
+    <section class="section services-section" id="services" aria-labelledby="servicesTitle">
+      <div class="container">
+        <div class="section-kicker reveal"><span>02 / WHAT I DO</span><span>THE TOOLKIT</span></div>
+        <div class="section-head reveal"><div><h2 class="display-title" id="servicesTitle">ONE CREATOR.<br /><span class="text-outline">MANY WORLDS.</span></h2></div><p class="section-side-note">From the first frame imagined to the final export delivered.</p></div>
+        <div class="services-grid">
+          <article class="service-card reveal"><span class="service-index">01 /</span><div class="service-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="16" width="50" height="36" rx="3"/><path d="M7 26h50M17 9l6 7M32 9l6 7M45 9l6 7"/><path d="m27 32 13 8-13 8z"/></svg></div><h3>AI VIDEO<br />CREATION</h3><p>Concept-to-frame AI visuals, shot planning, reference-driven consistency, and cinematic image-to-video direction.</p><div class="service-tags"><span>AI VISUALS</span><span>SHOT DESIGN</span></div></article>
+          <article class="service-card reveal"><span class="service-index">02 /</span><div class="service-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="12" width="54" height="40" rx="4"/><path d="M5 34h54M20 12v40M37 12v40"/><path d="m27 22 9 6-9 6z"/></svg></div><h3>VIDEO<br />EDITING</h3><p>Story-first assembly, pacing, emotional timing, transitions, color treatment, and polished final cuts.</p><div class="service-tags"><span>POST-PRODUCTION</span><span>COLOR</span></div></article>
+          <article class="service-card reveal"><span class="service-index">03 /</span><div class="service-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="18" y="7" width="28" height="50" rx="5"/><path d="M28 13h8M26 48h12"/><path d="m28 26 12 7-12 7z"/></svg></div><h3>SHORT-FORM<br />& ADS</h3><p>Product promos and social-first edits designed around scroll-stopping hooks, clear payoffs, and memorable rhythm.</p><div class="service-tags"><span>REELS / SHORTS</span><span>AD CREATIVE</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-section" id="process" aria-labelledby="processTitle">
+      <div class="container">
+        <div class="section-kicker reveal"><span>03 / THE PROCESS</span><span>HOW AN IDEA BECOMES A SCENE</span></div>
+        <div class="section-head reveal"><div><h2 class="display-title" id="processTitle">THINK IT.<br /><span class="text-outline">FRAME IT. CUT IT.</span></h2></div><p class="section-side-note">A structured workflow built around story, not random effects.</p></div>
+        <div class="process-layout reveal">
+          <div class="process-list" id="processList" role="tablist" aria-label="Editing workflow steps">
+            <button type="button" class="process-step active" data-process="0" role="tab" id="processTab0" aria-controls="processPanel" aria-selected="true"><span class="process-num">01</span><span class="process-name">Find the story</span><span class="process-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" class="process-step" data-process="1" role="tab" id="processTab1" aria-controls="processPanel" aria-selected="false" tabindex="-1"><span class="process-num">02</span><span class="process-name">Design the frame</span><span class="process-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" class="process-step" data-process="2" role="tab" id="processTab2" aria-controls="processPanel" aria-selected="false" tabindex="-1"><span class="process-num">03</span><span class="process-name">Build the sequence</span><span class="process-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" class="process-step" data-process="3" role="tab" id="processTab3" aria-controls="processPanel" aria-selected="false" tabindex="-1"><span class="process-num">04</span><span class="process-name">Polish the feeling</span><span class="process-arrow" aria-hidden="true">↗</span></button>
+          </div>
+          <div class="process-panel" id="processPanel" role="tabpanel" aria-labelledby="processTab0" tabindex="0">
+            <div class="process-panel-image"><img id="processImage" src="assets/thoughtful-editor.webp" alt="Editor thinking through the next cut beside an editing monitor" loading="lazy" /><span class="process-graphic" aria-hidden="true">01 / 04</span></div>
+            <div class="process-panel-copy"><span id="processTag">THE WHY BEFORE THE HOW</span><h3 id="processHeading">Every great edit starts with intent.</h3><p id="processDescription">I shape the message, pacing, emotion, and references before opening the timeline. The story sets the direction.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section look-section" id="look" aria-labelledby="lookTitle">
+      <div class="container look-layout">
+        <div class="look-copy reveal"><div class="section-kicker"><span>04 / THE FINISH</span></div><h2 class="display-title" id="lookTitle">EVERY FRAME<br /><span class="text-outline">HAS A FEEL.</span></h2><p>The smallest decisions change the mood: a shadow, a color shift, a half-second pause. Try this interactive <strong>color-look demonstration</strong> to see how grading can steer the atmosphere.</p><div class="look-meta"><span>COLOR / CONTRAST / MOOD</span><span>INTERACTIVE DEMO, NOT CLIENT FOOTAGE</span></div></div>
+        <div class="compare-shell reveal"><div class="compare-stage" id="compareStage" style="--split: 54%"><img class="compare-base" src="assets/working-editor.webp" alt="Editor at work, shown with a cool and desaturated color treatment" loading="lazy"/><div class="compare-grade" aria-hidden="true"><img src="assets/working-editor.webp" alt="" loading="lazy" /></div><div class="compare-divider" aria-hidden="true"><span>↔</span></div><div class="compare-label compare-label-left">BEFORE</div><div class="compare-label compare-label-right">CINEMATIC LOOK</div></div><label class="compare-controls" for="compareRange"><span>SLIDE TO REVEAL</span><input id="compareRange" type="range" min="0" max="100" value="54" aria-label="Compare original and stylized colors"/><span id="comparePercent">54%</span></label></div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="aboutTitle">
+      <div class="container about-layout">
+        <div class="about-image reveal"><img src="assets/camera-editor.webp" alt="The portfolio owner in a studio holding a professional video camera" loading="lazy" /><span class="photo-notation">THE PERSON BEHIND THE PIXELS // 001</span></div>
+        <div class="about-content reveal"><div class="section-kicker"><span>05 / THE EDITOR</span></div><h2 class="display-title" id="aboutTitle">PART ARTIST.<br /><span class="text-outline">PART PROBLEM SOLVER.</span></h2><p class="about-intro">Hey, I'm <strong data-site-name>YOUR NAME</strong> — an AI video creator and editor who believes the best videos make the technical feel effortless.</p><p>My approach blends cinematic language with modern generative tools. I obsess over expression, movement, continuity, sound, and timing so that the final result feels like a real scene — not just a sequence of pretty clips.</p><div class="about-pill-list"><span>STORYTELLING</span><span>AI CINEMATICS</span><span>VISUAL CONTINUITY</span><span>COMMERCIAL EDITING</span></div><a href="#contact" class="text-link">Let's make something memorable <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <div class="section-kicker reveal"><span>06 / START A PROJECT</span><span>THE NEXT FRAME IS YOURS</span></div>
+        <div class="contact-top reveal"><h2 class="contact-title" id="contactTitle">HAVE A STORY?<br /><span>LET'S MAKE IT</span><br /><em>UNMISSABLE.</em></h2><div class="contact-aside"><div class="contact-orbit" aria-hidden="true"><span>↗</span></div><p>Need an AI-powered cinematic scene, a better edit, or an ad that actually lands? Tell me what you're making.</p></div></div>
+        <div class="contact-bottom reveal"><div class="contact-info"><span class="meta-label">DROP A MESSAGE</span><a id="emailLink" href="mailto:your-email@example.com" class="email-display">your-email@example.com <span aria-hidden="true">↗</span></a><p id="contactLocation">Based in the Philippines · Collaborating worldwide</p><p class="contact-note">The form opens your email app. There is no database or server.</p></div><form class="contact-form" id="contactForm"><label><span>YOUR NAME</span><input name="name" type="text" placeholder="What should I call you?" autocomplete="name" required /></label><label><span>EMAIL ADDRESS</span><input name="email" type="email" placeholder="you@company.com" autocomplete="email" required /></label><label><span>TELL ME ABOUT YOUR PROJECT</span><textarea name="message" rows="3" placeholder="What are we creating?" required></textarea></label><button class="button button-primary contact-submit" type="submit">Open email draft <span aria-hidden="true">↗</span></button><p class="form-message" id="formMessage" role="status" aria-live="polite"></p></form></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><div><a href="#top" class="footer-brand" data-site-name>YOUR NAME</a><p>Crafted with intention. Cut with feeling.</p></div><div class="footer-end"><span>AI FILMMAKER × VIDEO EDITOR</span><span>© <span id="footerYear">2026</span> ALL RIGHTS RESERVED</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
+
+  <div class="modal" id="videoModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-scrim" data-close-modal></div>
+    <div class="modal-dialog" role="document"><div class="modal-top"><span class="modal-kicker">NOW SCREENING</span><button class="modal-close" type="button" id="modalClose" aria-label="Close video viewer">×</button></div><h2 id="modalTitle">SHOWREEL</h2><div class="modal-media" id="modalMedia"></div><section class="showcase-library" id="showcaseLibrary" aria-labelledby="showcaseTitle" hidden><h3 id="showcaseTitle">ALL VIDEOS</h3><div class="showcase-playlist" id="showcasePlaylist" role="group" aria-label="Choose a video"></div></section><div class="modal-description" id="modalDescription"></div></div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
