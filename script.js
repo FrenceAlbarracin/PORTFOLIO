@@ -29,6 +29,21 @@ const SETTINGS = {
       detail: 'Three AI film samples. Choose a clip from the showcase to watch it.'
     },
     {
+      id: 'tagalog-ai-drama',
+      title: 'Tagalog Cinematic AI Drama',
+      category: 'ai',
+      categoryLabel: 'TAGALOG AI FILM / CINEMATIC STORYTELLING',
+      description: 'A Tagalog-language cinematic AI drama told through three short film samples.',
+      image: 'assets/tagalog-ai-sample-1-thumb.jpg',
+      videos: [
+        { url: 'assets/tagalog-ai-sample-1.mp4', label: 'TAGALOG AI SAMPLE 1', image: 'assets/tagalog-ai-sample-1-thumb.jpg' },
+        { url: 'assets/tagalog-ai-sample-2.mp4', label: 'TAGALOG AI SAMPLE 2', image: 'assets/tagalog-ai-sample-2-thumb.jpg' },
+        { url: 'assets/tagalog-ai-sample-3.mp4', label: 'TAGALOG AI SAMPLE 3', image: 'assets/tagalog-ai-sample-3-thumb.jpg' }
+      ],
+      tags: ['TAGALOG STORYTELLING', 'AI FILMMAKING', 'CINEMATIC DRAMA'],
+      detail: 'Three Tagalog cinematic AI drama samples. Choose a clip from the showcase to watch it.'
+    },
+    {
       id: 'product-film',
       title: 'Product Films',
       category: 'commercial',
@@ -42,6 +57,23 @@ const SETTINGS = {
       ],
       tags: ['PRODUCT EDITING', 'VISUAL RHYTHM', 'AD CREATIVE'],
       detail: 'Three product film samples. Choose a clip from the showcase to watch it.'
+    },
+    {
+      id: 'social-media-pages',
+      title: 'Facebook Pages & TikTok',
+      category: 'social',
+      categoryLabel: 'SOCIAL MEDIA MANAGEMENT / FACEBOOK & TIKTOK',
+      description: 'Pages I manage, with audience reach and profile highlights.',
+      image: 'assets/FACEBOOK PAGE.png',
+      videos: [],
+      gallery: [
+        { image: 'assets/FACEBOOK PAGE.png', label: 'FACEBOOK PAGE' },
+        { image: 'assets/FACEBOOK VIEWS.png', label: 'FACEBOOK REEL VIEWS' },
+        { image: 'assets/TIKTOK PAGE.png', label: 'TIKTOK PAGE' },
+        { image: 'assets/TIKTOK VIEWS.png', label: 'TIKTOK VIDEO VIEWS' }
+      ],
+      tags: ['FACEBOOK', 'TIKTOK', 'PAGE MANAGEMENT'],
+      detail: 'Screenshots from Facebook and TikTok pages I manage, including profile and audience-view highlights.'
     }
   ]
 };
@@ -98,11 +130,15 @@ function renderProjects(filter = 'all') {
     const card = document.createElement('article');
     card.className = `project-card reveal${featured ? ' is-featured' : ''}`;
     const formattedNum = String(originalIndex + 1).padStart(2, '0');
-    const firstVideo = project.videos?.[0];
+    const firstItem = project.videos?.[0] || project.gallery?.[0];
+    const mediaCount = (project.videos?.length || 0) + (project.gallery?.length || 0);
+    const mediaLabel = project.videos?.length
+      ? `${project.videos.length} VIDEO${project.videos.length === 1 ? '' : 'S'}`
+      : `${mediaCount} HIGHLIGHTS`;
     card.innerHTML = `
-      <div class="project-thumb"><img src="${safeText(project.image)}" alt="Frame from ${safeText(firstVideo?.label || project.title)}" loading="eager" /></div>
+      <div class="project-thumb"><img src="${safeText(project.image)}" alt="Frame from ${safeText(firstItem?.label || project.title)}" loading="eager" /></div>
       <div class="project-shade" aria-hidden="true"></div>
-      <div class="project-topline"><span class="project-no">PROJECT ${formattedNum}</span><span class="project-label">${firstVideo ? `${project.videos.length} VIDEO${project.videos.length === 1 ? '' : 'S'}` : 'NO VIDEOS YET'}</span></div>
+      <div class="project-topline"><span class="project-no">PROJECT ${formattedNum}</span><span class="project-label">${mediaLabel || 'NO MEDIA YET'}</span></div>
       <div class="project-bottom">
         <div><span class="project-cat">${safeText(project.categoryLabel)}</span><h3 class="project-title">${safeText(project.title)}</h3><p class="project-desc">${safeText(project.description)}</p></div>
         <button class="project-open" type="button" data-project-id="${safeText(project.id)}" aria-label="View ${safeText(project.title)} details">↗</button>
@@ -274,10 +310,18 @@ function mediaErrorPlaceholder() {
   div.textContent = 'This browser could not display this video. Re-export it as MP4 (H.264/AVC video with AAC audio), then update its filename in script.js.';
   return div;
 }
+function imageErrorPlaceholder() {
+  const div = document.createElement('div');
+  div.className = 'media-error';
+  div.setAttribute('role', 'status');
+  div.textContent = 'This image could not be displayed. Check its file and path in assets.';
+  return div;
+}
 function getShowcaseVideos(selectedProject) {
-  return selectedProject.videos.map((video, index) => ({
+  const videos = (selectedProject.videos || []).map((video, index) => ({
     id: `${selectedProject.id}-video-${index + 1}`,
     projectId: selectedProject.id,
+    mediaType: 'video',
     title: selectedProject.title,
     videoUrl: video.url,
     videoLabel: video.label || `VIDEO ${index + 1}`,
@@ -286,6 +330,18 @@ function getShowcaseVideos(selectedProject) {
     detail: selectedProject.detail,
     tags: selectedProject.tags
   }));
+  const gallery = (selectedProject.gallery || []).map((item, index) => ({
+    id: `${selectedProject.id}-image-${index + 1}`,
+    projectId: selectedProject.id,
+    mediaType: 'image',
+    title: selectedProject.title,
+    videoLabel: item.label || `IMAGE ${index + 1}`,
+    image: item.image,
+    categoryLabel: selectedProject.categoryLabel,
+    detail: selectedProject.detail,
+    tags: selectedProject.tags
+  }));
+  return [...videos, ...gallery];
 }
 function selectShowcaseVideo(video) {
   const title = video.title;
@@ -296,7 +352,19 @@ function selectShowcaseVideo(video) {
   modalDescription.replaceChildren();
   modalMedia.classList.remove('is-portrait');
 
-  if (parsed.type === 'iframe') {
+  if (video.mediaType === 'image') {
+    const image = document.createElement('img');
+    image.src = video.image;
+    image.alt = video.videoLabel || title;
+    image.addEventListener('load', () => {
+      modalMedia.classList.toggle('is-portrait', image.naturalHeight > image.naturalWidth);
+    }, { once: true });
+    image.addEventListener('error', () => {
+      modalMedia.replaceChildren(imageErrorPlaceholder());
+      modalMedia.classList.remove('is-portrait');
+    }, { once: true });
+    modalMedia.append(image);
+  } else if (parsed.type === 'iframe') {
     const iframe = document.createElement('iframe');
     iframe.title = `${title} — video player`;
     iframe.src = parsed.url;
@@ -365,21 +433,22 @@ function openVideo(project = null) {
   document.body.classList.add('modal-open');
 
   if (project) {
-    const videos = getShowcaseVideos(project).filter(video => {
-      const type = parseVideoUrl(video.videoUrl).type;
-      return type === 'video' || type === 'iframe';
-    });
-    videos.forEach(item => {
+    const media = getShowcaseVideos(project);
+    showcasePlaylist.setAttribute('aria-label', `Choose media for ${project.title}`);
+    $('#showcaseTitle').textContent = media.every(item => item.mediaType === 'video')
+      ? 'ALL VIDEOS'
+      : media.every(item => item.mediaType === 'image') ? 'PROJECT GALLERY' : 'PROJECT MEDIA';
+    media.forEach(item => {
       const button = document.createElement('button');
       button.className = 'showcase-video';
       button.type = 'button';
       button.dataset.videoId = item.id;
       button.setAttribute('aria-pressed', 'false');
-      button.innerHTML = `<img src="${safeText(item.image)}" alt="" loading="lazy"><span class="showcase-video-title">${safeText(item.title)} — ${safeText(item.videoLabel)}</span><span class="showcase-video-label">${safeText(item.categoryLabel)}</span>`;
+      button.innerHTML = `<img src="${safeText(item.image)}" alt="" loading="lazy"><span class="showcase-video-title">${safeText(item.videoLabel)}</span><span class="showcase-video-label">${safeText(item.categoryLabel)}</span>`;
       button.addEventListener('click', () => selectShowcaseVideo(item));
       showcasePlaylist.append(button);
     });
-    selectShowcaseVideo(videos.find(video => video.projectId === project.id) || {
+    selectShowcaseVideo(media[0] || {
       id: project.id,
       title: project.title,
       videoUrl: '',

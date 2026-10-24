@@ -50,7 +50,9 @@ Each project has the following editable properties in `script.js`:
 - Files inside the portfolio folder, such as `assets/my-edit.mp4`
 - Other valid links open in a separate tab rather than being embedded
 
-The showcase currently contains two projects: **Cinematic AI Drama** has `AI SAMPLE 1.mov`, `AI SAMPLE 2.mov`, and `AI SAMPLE 3 .mp4`; **Product Films** has `PRODUCT SAMPLE 1.mp4`, `PRODUCT SAMPLE 2.mp4`, and `PRODUCT SAMPLE 3.mp4`. Each gallery card uses a still frame from its first sample and stays silent; every video in a project's playlist has its own frame thumbnail. Add clips and their `image` thumbnail paths to a project's `videos` list in `script.js`. Portrait videos keep their 9:16 shape in the player. Video preview depends on the browser and the video's codec. Exporting as MP4 (H.264) provides broader browser compatibility.
+The showcase includes four projects: **Cinematic AI Drama**, **Tagalog Cinematic AI Drama**, **Product Films**, and **Facebook Pages & TikTok**. Each video project has a selectable clip playlist; the social-media project opens the four Facebook and TikTok profile and views screenshots in an image gallery. The original Tagalog drama clips are HEVC `.mov` files, so web-ready H.264 `.mp4` copies power the online playlist for broader browser compatibility. Each video card uses a still from its first clip.
+
+To add a video to a project, add it and its thumbnail image to that project's `videos` list in `script.js`. To add screenshots to an image gallery, add their image paths and labels to `gallery`. Portrait videos and screenshots keep their natural orientation in the showcase.
 
 The index cards use frame captures from the first AI and product sample videos. To change a card's thumbnail, put a JPG or WEBP in `/assets` and update that project's `image` value.
 
@@ -96,6 +98,8 @@ cinematic_editor_portfolio/
   script.js                  PERSONAL DETAILS and INTERACTIONS
   README.md                  setup guide
   assets/
+    FACEBOOK PAGE.png             managed Facebook page
+    FACEBOOK VIEWS.png            Facebook audience highlights
     hero-portrait.webp
     working-editor.webp
     thoughtful-editor.webp
@@ -105,10 +109,18 @@ cinematic_editor_portfolio/
     ai-sample-1-thumb.jpg
     ai-sample-2-thumb.jpg
     ai-sample-3-thumb.jpg
+    tagalog-ai-sample-*.mp4       web-ready Tagalog drama clips
+    tagalog-ai-sample-1-thumb.jpg Tagalog drama poster
     product-sample-preview.jpg
     product-sample-1-thumb.jpg
     product-sample-2-thumb.jpg
     product-sample-3-thumb.jpg
+    TIKTOK PAGE.png               managed TikTok page
+    TIKTOK VIEWS.png              TikTok video-view highlights
+    FACEBOOK PAGE.png             managed Facebook page
+    FACEBOOK VIEWS.png            Facebook audience highlights
+    TIKTOK PAGE.png               managed TikTok page
+    TIKTOK VIEWS.png              TikTok video-view highlights
     AI SAMPLE 1.mov
     AI SAMPLE 2.mov
     AI SAMPLE 3 .mp4
