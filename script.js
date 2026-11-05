@@ -44,6 +44,36 @@ const SETTINGS = {
       detail: 'Three Tagalog cinematic AI drama samples. Choose a clip from the showcase to watch it.'
     },
     {
+      id: 'ai-influencer',
+      title: 'AI Influencer',
+      category: 'ai-influencer',
+      categoryLabel: 'AI INFLUENCER / SOCIAL CONTENT',
+      description: 'Short-form AI influencer content built for attention, retention and scroll-stopping personality.',
+      image: 'assets/ai-influencer-sample-1-thumb.jpg',
+      videos: [
+        { url: 'assets/AI Influencer Sample-h264.mp4', label: 'AI INFLUENCER SAMPLE 1', image: 'assets/ai-influencer-sample-1-thumb.jpg' },
+        { url: 'assets/AI Influencer Sample 2-h264.mp4', label: 'AI INFLUENCER SAMPLE 2', image: 'assets/ai-influencer-sample-2-thumb.jpg' },
+        { url: 'assets/AI Influencer Sample 3-h264.mp4', label: 'AI INFLUENCER SAMPLE 3', image: 'assets/ai-influencer-sample-3-thumb.jpg' }
+      ],
+      tags: ['AI INFLUENCER', 'SHORT-FORM', 'HOOK-DRIVEN'],
+      detail: 'Three AI influencer samples. Choose a clip from the showcase to watch it.'
+    },
+    {
+      id: 'ai-product-ugc',
+      title: 'AI Product UGC',
+      category: 'ai-product-ugc',
+      categoryLabel: 'AI PRODUCT UGC / SOCIAL ADS',
+      description: 'UGC-style product videos that feel native, premium and conversion-focused for social platforms.',
+      image: 'assets/ai-product-ugc-sample-1-thumb.jpg',
+      videos: [
+        { url: 'assets/AI PRODUCT UGC SAMPLE.mp4', label: 'AI PRODUCT UGC SAMPLE 1', image: 'assets/ai-product-ugc-sample-1-thumb.jpg' },
+        { url: 'assets/AI PRODUCT UGC SAMPLE 2.mp4', label: 'AI PRODUCT UGC SAMPLE 2', image: 'assets/ai-product-ugc-sample-2-thumb.jpg' },
+        { url: 'assets/AI PRODUCT UGC SAMPLE 3.mp4', label: 'AI PRODUCT UGC SAMPLE 3', image: 'assets/ai-product-ugc-sample-3-thumb.jpg' }
+      ],
+      tags: ['UGC STYLE', 'PRODUCT VIDEO', 'AI ADS'],
+      detail: 'Three AI product UGC samples. Choose a clip from the showcase to watch it.'
+    },
+    {
       id: 'product-film',
       title: 'Product Films',
       category: 'commercial',
@@ -129,6 +159,7 @@ function renderProjects(filter = 'all') {
       && (originalIndex === 0 || originalIndex === SETTINGS.projects.length - 1);
     const card = document.createElement('article');
     card.className = `project-card reveal${featured ? ' is-featured' : ''}`;
+    card.dataset.projectId = project.id;
     const formattedNum = String(originalIndex + 1).padStart(2, '0');
     const firstItem = project.videos?.[0] || project.gallery?.[0];
     const mediaCount = (project.videos?.length || 0) + (project.gallery?.length || 0);
@@ -372,21 +403,35 @@ function selectShowcaseVideo(video) {
     iframe.allowFullscreen = true;
     modalMedia.append(iframe);
   } else if (parsed.type === 'video') {
-    const video = document.createElement('video');
-    video.src = parsed.url;
-    video.controls = true;
-    video.playsInline = true;
-    video.autoplay = true;
-    video.addEventListener('loadedmetadata', () => {
-      modalMedia.classList.toggle('is-portrait', video.videoHeight > video.videoWidth);
+    const mediaPoster = video.image || '';
+    const videoElement = document.createElement('video');
+    videoElement.src = parsed.url;
+    videoElement.controls = true;
+    videoElement.playsInline = true;
+    videoElement.autoplay = true;
+    if (mediaPoster) videoElement.poster = mediaPoster;
+    videoElement.preload = 'metadata';
+    videoElement.addEventListener('loadedmetadata', () => {
+      const isPortraitish = videoElement.videoHeight > videoElement.videoWidth * 1.15;
+      modalMedia.classList.toggle('is-portrait', isPortraitish);
     }, { once: true });
-    video.addEventListener('error', () => {
-      video.pause();
-      modalMedia.replaceChildren(mediaErrorPlaceholder());
+    videoElement.addEventListener('error', () => {
+      videoElement.pause();
+      const fallback = document.createElement('img');
+      fallback.src = mediaPoster;
+      fallback.alt = video.videoLabel || title;
+      fallback.className = 'media-fallback-image';
+      modalMedia.replaceChildren(fallback, mediaErrorPlaceholder());
       modalMedia.classList.remove('is-portrait');
     }, { once: true });
-    modalMedia.append(video);
-    video.play().catch(() => {});
+    modalMedia.append(videoElement);
+    videoElement.play().catch(() => {
+      const fallback = document.createElement('img');
+      fallback.src = mediaPoster;
+      fallback.alt = video.videoLabel || title;
+      fallback.className = 'media-fallback-image';
+      modalMedia.replaceChildren(fallback);
+    });
   } else if (parsed.type === 'empty') {
     modalMedia.append(mediaPlaceholder());
   } else if (parsed.type === 'external') {
